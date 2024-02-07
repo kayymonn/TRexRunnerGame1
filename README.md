@@ -5,4 +5,4 @@ https://monogame.net/
 
 coded by Kaymon. 
 
-documentation by SkyLofi.
+documentation help by SkyLofi.
