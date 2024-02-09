@@ -1,13 +1,25 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Project1.Entities;
+using Project1.Graphics;
 
 namespace Project1
 {
     public class TRexRunnerGame : Game
     {
+        private const string ASSET_NAME_SPRITESHEET = "TrexSpritesheet";
+
+
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+
+        private Texture2D _spriteSheetTexture;
+
+        private Trex _trex;
+
+
 
         public TRexRunnerGame()
         {
@@ -27,7 +39,9 @@ namespace Project1
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            
+            _spriteSheetTexture = Content.Load<Texture2D>(ASSET_NAME_SPRITESHEET);
+
+            _trex = new Trex(_spriteSheetTexture, new Vector2(20, 20));
         }
 
         protected override void Update(GameTime gameTime)
@@ -45,6 +59,11 @@ namespace Project1
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             
+            _spriteBatch.Begin();
+
+            _trex.Draw(_spriteBatch, gameTime);
+            
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }
