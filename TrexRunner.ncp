@@ -1,0 +1,305 @@
+<Project>
+  <Name>TrexRunner</Name>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>Game</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>TRexRunnerGame</Name>
+        <Access>Public</Access>
+        <Location left="27" top="157" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private EntityManager _entityManager</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Game</Name>
+        <Access>Public</Access>
+        <Location left="15" top="11" />
+        <Size width="162" height="77" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Interface">
+        <Name>IGameEntity</Name>
+        <Access>Public</Access>
+        <Location left="770" top="11" />
+        <Size width="351" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">int DrawOrder { get; }</Member>
+        <Member type="Method">void Update(GameTime gameTime)</Member>
+        <Member type="Method">void Draw(GameTime gameTime, SpriteBatch spriteBatch)</Member>
+      </Entity>
+      <Entity type="Class">
+        <Name>Trex</Name>
+        <Access>Public</Access>
+        <Location left="570" top="431" />
+        <Size width="354" height="278" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public Vector2 Position { get; set; }</Member>
+        <Member type="Property">public TrexState State { get; }</Member>
+        <Member type="Property">public bool IsAlive { get; }</Member>
+        <Member type="Property">public float Speed { get; set; }</Member>
+        <Member type="Method">public void Update(GameTime gameTime)</Member>
+        <Member type="Method">public void Draw(GameTime gameTime, SpriteBatch spriteBatch)</Member>
+        <Member type="Method">public bool Jump()</Member>
+        <Member type="Method">public bool Duck()</Member>
+        <Member type="Method">public bool Drop()</Member>
+        <Member type="Method">public bool Die()</Member>
+        <Member type="Property">public Sprite Sprite { get; private set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ScoreBoard</Name>
+        <Access>Public</Access>
+        <Location left="335" top="431" />
+        <Size width="201" height="278" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public int Score { get; set; }</Member>
+        <Member type="Property">public int HiScore { get; set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>GroundManager</Name>
+        <Access>Public</Access>
+        <Location left="1194" top="11" />
+        <Size width="214" height="281" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Obstacle</Name>
+        <Access>Public</Access>
+        <Location left="953" top="431" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>CactusGroup</Name>
+        <Access>Public</Access>
+        <Location left="927" top="735" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>FlyingDino</Name>
+        <Access>Public</Access>
+        <Location left="1119" top="735" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ObstacleManager</Name>
+        <Access>Public</Access>
+        <Location left="1205" top="431" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>SkyManager</Name>
+        <Access>Public</Access>
+        <Location left="113" top="431" />
+        <Size width="187" height="273" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Enum">
+        <Name>TrexState</Name>
+        <Access>Public</Access>
+        <Location left="736" top="781" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Value>Idle</Value>
+        <Value>Running</Value>
+        <Value>Jumping</Value>
+        <Value>Ducking</Value>
+        <Value>Falling</Value>
+      </Entity>
+      <Entity type="Class">
+        <Name>InputController</Name>
+        <Access>Public</Access>
+        <Location left="377" top="781" />
+        <Size width="189" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private Trex _trex</Member>
+        <Member type="Method">public void ProcessControls(GameTime gameTime)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>EntityManager</Name>
+        <Access>Public</Access>
+        <Location left="502" top="11" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private List &lt;IGameEntity&gt; _gameEntities</Member>
+        <Member type="Method">public void AddEntity(IGameEntity entity)</Member>
+        <Member type="Method">public void RemoveEntity(IGameEntity entity)</Member>
+        <Member type="Method">public void Clear()</Member>
+        <Member type="Method">public void UpdateEntities(GameTime gameTime)</Member>
+        <Member type="Method">public void DrawEntities(SpriteBatch spriteBatch, GameTime gameTime)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Sprite</Name>
+        <Access>Public</Access>
+        <Location left="113" top="781" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public Texture2D Texture { get; private set; }</Member>
+        <Member type="Property">public int X { get; set; }</Member>
+        <Member type="Property">public int X { get; set; }</Member>
+        <Member type="Property">public int Width { get; set; }</Member>
+        <Member type="Property">public int Height { get; set; }</Member>
+        <Member type="Method">public void Draw(SpriteBatch spriteBatch)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Generalization" first="0" second="1">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>237</X>
+          <Y>206</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Realization" first="3" second="2">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>891</X>
+          <Y>406</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>945</X>
+          <Y>252</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Realization" first="4" second="2">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>851</X>
+          <Y>318</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Realization" first="5" second="2">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>1164</X>
+          <Y>129</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="7" second="6">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>994</X>
+          <Y>672</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="8" second="6">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1196</X>
+          <Y>710</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1080</X>
+          <Y>672</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Realization" first="6" second="2">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1019</X>
+          <Y>406</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1019</X>
+          <Y>278</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Association" first="9" second="6">
+        <Label>creates</Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Realization" first="9" second="2">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1269</X>
+          <Y>406</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1083</X>
+          <Y>252</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Realization" first="10" second="2">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>808</X>
+          <Y>254</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Association" first="3" second="11">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="12" second="3">
+        <Label>controls</Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>689</X>
+          <Y>822</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>693</X>
+          <Y>756</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Aggregation</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="13" second="2">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Aggregation</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="0" second="13">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="3" second="14">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>598</X>
+          <Y>751</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Aggregation</AssociationType>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+</Project>
