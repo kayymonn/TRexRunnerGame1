@@ -11,6 +11,12 @@ namespace Project1
     {
         private const string ASSET_NAME_SPRITESHEET = "TrexSpritesheet";
 
+        public const int WINDOW_WIDTH = 600;
+        public const int WINDOW_HEIGHT = 150;
+
+        public const int TREX_START_POS_Y = WINDOW_HEIGHT - 16;
+        public const int TREX_START_POS_X = 1;
+
 
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
@@ -19,6 +25,7 @@ namespace Project1
 
         private Trex _trex;
 
+       
 
 
         public TRexRunnerGame()
@@ -33,6 +40,10 @@ namespace Project1
             
 
             base.Initialize();
+
+            _graphics.PreferredBackBufferHeight = WINDOW_HEIGHT;
+            _graphics.PreferredBackBufferWidth = WINDOW_WIDTH;
+            _graphics.ApplyChanges();
         }
 
         protected override void LoadContent()
@@ -41,7 +52,10 @@ namespace Project1
 
             _spriteSheetTexture = Content.Load<Texture2D>(ASSET_NAME_SPRITESHEET);
 
-            _trex = new Trex(_spriteSheetTexture, new Vector2(20, 20));
+            _trex = new Trex(_spriteSheetTexture, new Vector2(TREX_START_POS_X, TREX_START_POS_Y - Trex.TREX_DEFAULT_SPRITE_POS_HEIGHT));
+
+            
+            
         }
 
         protected override void Update(GameTime gameTime)
