@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Linq;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Project1.Graphics
@@ -20,6 +19,21 @@ namespace Project1.Graphics
                 return GetFrame(index);
             }
         }
+
+        public SpriteAnimationFrame CurrentFrame
+        {
+            get
+            {
+                return _frames
+                    .Where(f => f.TimeStamp <= PlaybackProgress)
+                    .OrderBy(f => f.TimeStamp)
+                    .LastOrDefault();
+
+
+            }
+        }
+
+        
 
         public bool IsPlaying { get; private set; }
 
@@ -55,21 +69,6 @@ namespace Project1.Graphics
             
         }
 
-        public SpriteAnimationFrame CurrentFrame
-        {
-            get
-            {
-                return _frames
-                    .Where(f => f.TimeStamp <= PlaybackProgress)
-                    .OrderBy(f => f.TimeStamp)
-                    .LastOrDefault();
-
-
-            }
-        }
-
-
-
         public void Play()
         {
             IsPlaying = true;
@@ -88,5 +87,8 @@ namespace Project1.Graphics
             return _frames[index];
 
         }
+
+        
+
     }
 }
