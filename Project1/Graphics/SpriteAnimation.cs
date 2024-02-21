@@ -33,11 +33,22 @@ namespace Project1.Graphics
             }
         }
 
-        
+        public float Duration
+        {
+            get
+            {
+                if (!_frames.Any())
+                    return 0;
+
+                return _frames.Max(f => f.TimeStamp);
+            }
+        }
 
         public bool IsPlaying { get; private set; }
 
         public float PlaybackProgress { get; private set; }
+
+        public bool ShouldLoop { get; set; } = true;
 
         public void AddFrame(Sprite sprite, float timeStamp)
         {
@@ -55,6 +66,14 @@ namespace Project1.Graphics
             {
 
                 PlaybackProgress += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+                if (PlaybackProgress > Duration)
+                {
+                    if (ShouldLoop)
+                        PlaybackProgress -= Duration;
+                    else
+                        Stop();
+                }
 
             }
         }

@@ -66,6 +66,9 @@ namespace Project1
             
 
             base.Update(gameTime);
+
+
+            _trex.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
