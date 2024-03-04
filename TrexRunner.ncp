@@ -35,7 +35,7 @@
         <Name>Trex</Name>
         <Access>Public</Access>
         <Location left="570" top="431" />
-        <Size width="354" height="278" />
+        <Size width="354" height="281" />
         <Collapsed>False</Collapsed>
         <Member type="Property">public Vector2 Position { get; set; }</Member>
         <Member type="Property">public TrexState State { get; }</Member>
@@ -43,7 +43,8 @@
         <Member type="Property">public float Speed { get; set; }</Member>
         <Member type="Method">public void Update(GameTime gameTime)</Member>
         <Member type="Method">public void Draw(GameTime gameTime, SpriteBatch spriteBatch)</Member>
-        <Member type="Method">public bool Jump()</Member>
+        <Member type="Method">public bool StartJump()</Member>
+        <Member type="Method">public void ContinueJump()</Member>
         <Member type="Method">public bool Duck()</Member>
         <Member type="Method">public bool Drop()</Member>
         <Member type="Method">public bool Die()</Member>
@@ -256,6 +257,8 @@
         </BendPoint>
       </Relationship>
       <Relationship type="Association" first="3" second="11">
+        <Label>
+        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <Direction>Unidirectional</Direction>
@@ -271,31 +274,33 @@
         </BendPoint>
         <BendPoint relativeToStartShape="False">
           <X>693</X>
-          <Y>756</Y>
+          <Y>759</Y>
         </BendPoint>
         <Direction>Unidirectional</Direction>
         <AssociationType>Aggregation</AssociationType>
       </Relationship>
       <Relationship type="Association" first="13" second="2">
+        <Label>
+        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <Direction>Unidirectional</Direction>
         <AssociationType>Aggregation</AssociationType>
       </Relationship>
       <Relationship type="Association" first="0" second="13">
+        <Label>
+        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <Direction>Unidirectional</Direction>
         <AssociationType>Composition</AssociationType>
       </Relationship>
       <Relationship type="Association" first="3" second="14">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
           <X>598</X>
-          <Y>751</Y>
+          <Y>754</Y>
         </BendPoint>
         <Direction>Unidirectional</Direction>
         <AssociationType>Aggregation</AssociationType>

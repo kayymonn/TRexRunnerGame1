@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Project1.Graphics;
 using System;
@@ -47,6 +48,7 @@ namespace Project1.Entities
             Position = position;
             _idleBackgroundSprite = new Sprite(spriteSheet, TREx_IDLE_BACKGROUND_SPRITE_POS_X, TREx_IDLE_BACKGROUND_SPRITE_POS_Y, TREX_DEFAULT_SPRITE_POS_WIDTH, TREX_DEFAULT_SPRITE_POS_HEIGHT);
             State = TrexState.Idle;
+
 
             _random = new Random();
 
@@ -105,5 +107,20 @@ namespace Project1.Entities
             
         }
 
+        public bool BeginJump()
+        {
+            if (State == TrexState.Jumping || State == TrexState.Falling)
+                return false;
+
+            return true;
+        }
+
+        public bool ContinueJump()
+        {
+
+
+            return true;
+
+        }
     }
 }
