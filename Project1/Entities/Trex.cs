@@ -45,7 +45,7 @@ namespace Project1.Entities
 
         public Color Color { get; private set; } = Color.Red;
 
-        public int Krok { get; set; } = 1;
+        public int Krok { get; set; }
 
         public Trex(Texture2D spriteSheet, Vector2 position)
         {

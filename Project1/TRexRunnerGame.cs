@@ -24,9 +24,9 @@ namespace Project1
 
         private Texture2D _spriteSheetTexture;
 
-        private Trex _trex;
+        private Trex _trexPomalej;
 
-        private Trex _trex2;
+        private Trex _trexRychlej;
 
 
         public TRexRunnerGame()
@@ -43,6 +43,7 @@ namespace Project1
             _graphics.PreferredBackBufferHeight = WINDOW_HEIGHT;
             _graphics.PreferredBackBufferWidth = WINDOW_WIDTH;
             _graphics.ApplyChanges();
+
         }
 
         protected override void LoadContent()
@@ -51,35 +52,58 @@ namespace Project1
 
             _spriteSheetTexture = Content.Load<Texture2D>(ASSET_NAME_SPRITESHEET);
 
-            _trex = new Trex(_spriteSheetTexture, new Vector2(TREX_START_POS_X + Trex.TREX_DEFAULT_SPRITE_POS_WIDTH *2, TREX_START_POS_Y - Trex.TREX_DEFAULT_SPRITE_POS_HEIGHT));
-            _trex2 = new Trex(_spriteSheetTexture, new Vector2(TREX_START_POS_X, TREX_START_POS_Y - Trex.TREX_DEFAULT_SPRITE_POS_HEIGHT));
+            _trexRychlej = new Trex(_spriteSheetTexture, new Vector2(WINDOW_WIDTH - Trex.TREX_DEFAULT_SPRITE_POS_WIDTH, TREX_START_POS_Y - Trex.TREX_DEFAULT_SPRITE_POS_HEIGHT ));
+            _trexRychlej.Krok = -4;
 
-            
+
+            _trexPomalej = new Trex(_spriteSheetTexture, new Vector2(TREX_START_POS_X, TREX_START_POS_Y - Trex.TREX_DEFAULT_SPRITE_POS_HEIGHT));
+            _trexPomalej.Krok = 2;
         }
 
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
-            
-
             base.Update(gameTime);
 
+            
+            _trexPomalej.Position = new Vector2(_trexPomalej.Position.X + _trexPomalej.Krok, _trexPomalej.Position.Y);
+            
+            if (_trexPomalej.Position.X == WINDOW_WIDTH - Trex.TREX_DEFAULT_SPRITE_POS_WIDTH)
+                _trexPomalej.Krok = -2;
 
-            _trex.Update(gameTime);
+            if (_trexPomalej.Position.X < 0)
+                _trexPomalej.Krok = 2;
 
-            _trex2.Position = new Vector2(_trex2.Position.X  + _trex2.Krok, _trex2.Position.Y );
-            if (_trex2.Position.X > WINDOW_WIDTH - Trex.TREX_DEFAULT_SPRITE_POS_WIDTH)
-                _trex2.Krok = -2;
-            if (_trex2.Position.X < 0)
-                _trex2.Krok = 2;
-             
-            if (_trex2.Position.X + Trex.TREX_DEFAULT_SPRITE_POS_WIDTH  > _trex.Position.X)
+            _trexPomalej.Update(gameTime);
+
+ 
+
+
+            _trexRychlej.Position = new Vector2(_trexRychlej.Position.X  + _trexRychlej.Krok, _trexRychlej.Position.Y );
+            if (_trexRychlej.Position.X > WINDOW_WIDTH - Trex.TREX_DEFAULT_SPRITE_POS_WIDTH)
+                _trexRychlej.Krok = -4;
+
+            
+            if (_trexRychlej.Position.X < 0)
+                _trexRychlej.Krok = 4;
+           
+           
+            
+            _trexRychlej.Update(gameTime);
+
+
+           if (_trexPomalej.Position.X + Trex.TREX_DEFAULT_SPRITE_POS_WIDTH > _trexRychlej.Position.X)
+            {
+                _trexPomalej.Krok = -2;
+                _trexRychlej.Krok = 4;
+            }
                 
-            
-            _trex2.Update(gameTime);
-            
+                
+
+
+
+
 
         }
 
@@ -90,8 +114,8 @@ namespace Project1
             
             _spriteBatch.Begin();
 
-            _trex.Draw(_spriteBatch, gameTime);
-            _trex2.Draw(_spriteBatch, gameTime);
+            _trexPomalej.Draw(_spriteBatch, gameTime);
+            _trexRychlej.Draw(_spriteBatch, gameTime);
             
             _spriteBatch.End();
 
