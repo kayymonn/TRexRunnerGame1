@@ -103,10 +103,23 @@ namespace Project1.Graphics
         {
             if (index < 0 || index >= _frames.Count)
                 throw new ArgumentOutOfRangeException(nameof(index), "A frame with index" + index + "does not exist in this animation.");
+           
             return _frames[index];
+
+
 
         }
 
+        public void Clear()
+        {
+
+
+            Stop();
+            _frames.Clear();
+
+
+
+        }
         
 
     }
