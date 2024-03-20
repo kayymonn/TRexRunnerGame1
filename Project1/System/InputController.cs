@@ -18,7 +18,7 @@ namespace TrexRunnerGame.System
         {
             _trex = trex;
         }
-        public void ProcessControls(GameTime gameTime)
+        public void ProcessControlls(GameTime gameTime)
         {
             KeyboardState keyboardState = Keyboard.GetState();
 

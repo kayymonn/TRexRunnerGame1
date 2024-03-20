@@ -12,8 +12,6 @@ namespace Project1.Entities
 {
     public class Trex : IGameEntity
     {
-        private const float JUMP_START_VELOCITY = -30f;
-
         private const int TREx_IDLE_BACKGROUND_SPRITE_POS_X = 40;
         private const int TREx_IDLE_BACKGROUND_SPRITE_POS_Y = 0;
 
@@ -43,11 +41,11 @@ namespace Project1.Entities
 
         public bool IsAlive { get; private set; }
 
-        public float Speed { get;  set; }
+        public float Speed { get; private set; }
 
         public Color Color { get; private set; } = Color.Red;
 
-        public int Smer { get; set; }
+        public int Krok { get; set; }
 
         public Trex(Texture2D spriteSheet, Vector2 position)
         {
@@ -55,8 +53,6 @@ namespace Project1.Entities
             Position = position;
             _idleBackgroundSprite = new Sprite(spriteSheet, TREx_IDLE_BACKGROUND_SPRITE_POS_X, TREx_IDLE_BACKGROUND_SPRITE_POS_Y, TREX_DEFAULT_SPRITE_POS_WIDTH, TREX_DEFAULT_SPRITE_POS_HEIGHT);
             State = TrexState.Idle;
-
-            
 
 
             _random = new Random();
@@ -83,12 +79,6 @@ namespace Project1.Entities
                 _idleBackgroundSprite.Draw(spriteBatch, this.Position );
                 _blinkAnimation.Draw(spriteBatch, Position);
             }
-            else if ( State == TrexState.Jumping || State == TrexState.Falling) 
-            {
-
-                _idleSprite.Draw(spriteBatch, Position);
-
-            }
             
             
         }
@@ -114,7 +104,7 @@ namespace Project1.Entities
         private void CreateBlinkAnimation()
         {
 
-            _blinkAnimation.Clear();
+            
             _blinkAnimation = new SpriteAnimation();
             _blinkAnimation.ShouldLoop = false;
 
@@ -131,10 +121,6 @@ namespace Project1.Entities
         {
             if (State == TrexState.Jumping || State == TrexState.Falling)
                 return false;
-
-            
-            State = TrexState.Jumping;
-
 
             return true;
         }

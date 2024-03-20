@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Project1.Entities;
 using Project1.Graphics;
-using TrexRunnerGame.System;
 
 namespace Project1
 {
@@ -28,8 +27,6 @@ namespace Project1
         private Trex _trexPomalej;
 
         private Trex _trexRychlej;
-
-        private InputController _inputController;
 
 
         public TRexRunnerGame()
@@ -56,14 +53,11 @@ namespace Project1
             _spriteSheetTexture = Content.Load<Texture2D>(ASSET_NAME_SPRITESHEET);
 
             _trexRychlej = new Trex(_spriteSheetTexture, new Vector2(WINDOW_WIDTH - Trex.TREX_DEFAULT_SPRITE_POS_WIDTH, TREX_START_POS_Y - Trex.TREX_DEFAULT_SPRITE_POS_HEIGHT ));
-            _trexRychlej.Speed = 6;
-            _trexRychlej.Smer = -1;
+            _trexRychlej.Krok = -4;
 
 
             _trexPomalej = new Trex(_spriteSheetTexture, new Vector2(TREX_START_POS_X, TREX_START_POS_Y - Trex.TREX_DEFAULT_SPRITE_POS_HEIGHT));
-            _trexPomalej.Smer = 1;
-            _trexPomalej.Speed = 1;
-            _inputController = new InputController(_trexRychlej);
+            _trexPomalej.Krok = 2;
         }
 
         protected override void Update(GameTime gameTime)
@@ -72,29 +66,27 @@ namespace Project1
                 Exit();
             base.Update(gameTime);
 
-            _inputController.ProcessControls(gameTime);
-
             
-            _trexPomalej.Position = new Vector2(_trexPomalej.Position.X + _trexPomalej.Smer * _trexPomalej.Speed, _trexPomalej.Position.Y);
+            _trexPomalej.Position = new Vector2(_trexPomalej.Position.X + _trexPomalej.Krok, _trexPomalej.Position.Y);
             
             if (_trexPomalej.Position.X == WINDOW_WIDTH - Trex.TREX_DEFAULT_SPRITE_POS_WIDTH)
-                _trexPomalej.Smer = -1;
+                _trexPomalej.Krok = -2;
 
             if (_trexPomalej.Position.X < 0)
-                _trexPomalej.Smer = 1;
+                _trexPomalej.Krok = 2;
 
             _trexPomalej.Update(gameTime);
 
  
 
 
-            _trexRychlej.Position = new Vector2(_trexRychlej.Position.X  + _trexRychlej.Smer * _trexRychlej.Speed, _trexRychlej.Position.Y );
+            _trexRychlej.Position = new Vector2(_trexRychlej.Position.X  + _trexRychlej.Krok, _trexRychlej.Position.Y );
             if (_trexRychlej.Position.X > WINDOW_WIDTH - Trex.TREX_DEFAULT_SPRITE_POS_WIDTH)
-                _trexRychlej.Smer = -1;
+                _trexRychlej.Krok = -4;
 
             
             if (_trexRychlej.Position.X < 0)
-                _trexRychlej.Smer = 1;
+                _trexRychlej.Krok = 4;
            
            
             
@@ -103,10 +95,8 @@ namespace Project1
 
            if (_trexPomalej.Position.X + Trex.TREX_DEFAULT_SPRITE_POS_WIDTH > _trexRychlej.Position.X)
             {
-                _trexPomalej.Smer = -1;
-                _trexRychlej.Smer = 1;
-
-                _trexPomalej.Speed = _trexPomalej.Speed + 1;
+                _trexPomalej.Krok = -2;
+                _trexRychlej.Krok = 4;
             }
                 
                 
