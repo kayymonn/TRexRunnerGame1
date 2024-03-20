@@ -28,12 +28,11 @@ namespace Project1.Entities
         private Sprite _idleSprite;
         private Sprite _idleBlinkSprite;
 
-
         private SpriteAnimation _blinkAnimation;
 
         private Random _random;
 
-        private Texture2D spriteSheet;
+       
 
         public TrexState State { get; private set; }
 
@@ -42,10 +41,6 @@ namespace Project1.Entities
         public bool IsAlive { get; private set; }
 
         public float Speed { get; private set; }
-
-        public Color Color { get; private set; } = Color.Red;
-
-        public int Krok { get; set; } = 1;
 
         public Trex(Texture2D spriteSheet, Vector2 position)
         {
@@ -58,13 +53,10 @@ namespace Project1.Entities
             _random = new Random();
 
             _idleSprite = new Sprite(spriteSheet, TREX_DEFAULT_SPRITE_POS_X, TREX_DEFAULT_SPRITE_POS_Y, TREX_DEFAULT_SPRITE_POS_WIDTH, TREX_DEFAULT_SPRITE_POS_HEIGHT);
-
             _idleBlinkSprite = new Sprite(spriteSheet, TREX_DEFAULT_SPRITE_POS_X + TREX_DEFAULT_SPRITE_POS_WIDTH, TREX_DEFAULT_SPRITE_POS_Y, TREX_DEFAULT_SPRITE_POS_WIDTH, TREX_DEFAULT_SPRITE_POS_HEIGHT);
             
             CreateBlinkAnimation();
             _blinkAnimation.Play();
-
-            this.spriteSheet = spriteSheet;
         }
 
 
@@ -72,11 +64,9 @@ namespace Project1.Entities
 
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            
-            
             if (State == TrexState.Idle) 
             {
-                _idleBackgroundSprite.Draw(spriteBatch, this.Position );
+                _idleBackgroundSprite.Draw(spriteBatch, this.Position);
                 _blinkAnimation.Draw(spriteBatch, Position);
             }
             
