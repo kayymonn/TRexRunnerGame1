@@ -44,7 +44,7 @@ namespace Project1.Entities
 
         public Trex(Texture2D spriteSheet, Vector2 position)
         {
-            
+
             Position = position;
             _idleBackgroundSprite = new Sprite(spriteSheet, TREx_IDLE_BACKGROUND_SPRITE_POS_X, TREx_IDLE_BACKGROUND_SPRITE_POS_Y, TREX_DEFAULT_SPRITE_POS_WIDTH, TREX_DEFAULT_SPRITE_POS_HEIGHT);
             State = TrexState.Idle;
@@ -54,8 +54,9 @@ namespace Project1.Entities
 
             _idleSprite = new Sprite(spriteSheet, TREX_DEFAULT_SPRITE_POS_X, TREX_DEFAULT_SPRITE_POS_Y, TREX_DEFAULT_SPRITE_POS_WIDTH, TREX_DEFAULT_SPRITE_POS_HEIGHT);
             _idleBlinkSprite = new Sprite(spriteSheet, TREX_DEFAULT_SPRITE_POS_X + TREX_DEFAULT_SPRITE_POS_WIDTH, TREX_DEFAULT_SPRITE_POS_Y, TREX_DEFAULT_SPRITE_POS_WIDTH, TREX_DEFAULT_SPRITE_POS_HEIGHT);
-            
+
             CreateBlinkAnimation();
+            if (_blinkAnimation !=null)
             _blinkAnimation.Play();
         }
 
@@ -75,9 +76,8 @@ namespace Project1.Entities
 
         public void Update(GameTime gameTime)
         {
-           if(State == TrexState.Idle)
+            if (State == TrexState.Idle)
             {
-
                 _blinkAnimation.Update(gameTime);
 
                 if (!_blinkAnimation.IsPlaying)
@@ -93,6 +93,8 @@ namespace Project1.Entities
 
         private void CreateBlinkAnimation()
         {
+            if (_blinkAnimation == null)
+                _blinkAnimation = new SpriteAnimation();
 
             
             _blinkAnimation = new SpriteAnimation();
